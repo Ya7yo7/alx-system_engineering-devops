@@ -6,12 +6,15 @@ and returns a list of all hot article titles for a given subreddit.
 import requests
 
 
-def recurse(subreddit, hot_list=[], after=None):
+def recurse(subreddit, hot_list=None, after=None):
     """
     Recursively queries the Reddit API and returns a list containing the titles
     of all hot articles for a given subreddit. If the subreddit is invalid,
     returns None.
     """
+    if hot_list is None:
+        hot_list = []
+
     url = f"https://api.reddit.com/r/{subreddit}/hot"
     headers = {'User-Agent': 'CustomClient/1.0'}
     params = {'limit': 100}
